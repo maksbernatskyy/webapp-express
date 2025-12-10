@@ -3,6 +3,7 @@ const app = express()
 PORT = 3000
 const moviesRouter = require('./routers/movies')
 const errorsHandler = require('./middlewares/errorsHandler')
+const notFound = require('./middlewares/notFound')
 
 app.get('/', (req, res) => {
     res.send('Server of my movies')
@@ -13,6 +14,9 @@ app.use('/movies', moviesRouter)
 
 // Error 500
 app.use(errorsHandler)
+
+// Error 404
+app.use(notFound)
 
 // See in the terminal the number of port
 app.listen(PORT, () => {
