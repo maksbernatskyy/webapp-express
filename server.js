@@ -1,9 +1,14 @@
 const express = require('express')
 const app = express()
-PORT = 3000
+const PORT = 3000
+const cors = require('cors')
 const moviesRouter = require('./routers/movies')
 const errorsHandler = require('./middlewares/errorsHandler')
 const notFound = require('./middlewares/notFound')
+
+app.use(cors({
+    origin: 'http://localhost:5173'
+}))
 
 app.get('/', (req, res) => {
     res.send('Server of my movies')
