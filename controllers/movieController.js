@@ -39,11 +39,11 @@ function show_reviews(req, res) {
 // store
 function store(req, res) {
   const sql =
-    "INSERT INTO reviews (name, vote, text, created_at, updated_at) VALUES (?, ?, ?, ?, ?)";
+    "INSERT INTO reviews (newId, name, vote, text, created_at, updated_at) VALUES (?, ?, ?, ?, ?)";
 
-  connection.query(sql, [name, vote, text, created_at, updated_at], (err, results) => {
+  connection.query(sql, [newId, name, vote, text, created_at, updated_at], (err, results) => {
     if(err) return res.status(500).json({error: 'Database query failed'})
-  res.send('Add review')
+  res.json('results')
   })
 }
 

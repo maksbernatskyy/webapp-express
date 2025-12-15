@@ -14,6 +14,8 @@ app.get('/', (req, res) => {
     res.send('Server of my movies')
 })
 
+app.use(express.json())
+
 // Connect the routers to server
 app.use('/movies', moviesRouter)
 
