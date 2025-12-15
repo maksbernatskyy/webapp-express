@@ -11,4 +11,7 @@ router.get('/:id', movieController.show_movie)
 // show reviews
 router.get('/:id/reviews', movieController.show_reviews)
 
+// store
+router.post('/:id/reviews', movieController.store)
+
 module.exports = router
