@@ -20,7 +20,7 @@ app.use(express.json())
 app.use('/movies', moviesRouter)
 
 // Error 500
-app.use(errorsHandler)
+// app.use(errorsHandler)
 
 // Error 404
 app.use(notFound)

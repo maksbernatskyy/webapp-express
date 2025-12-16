@@ -38,13 +38,23 @@ function show_reviews(req, res) {
 
 // store
 function store(req, res) {
-  const sql =
-    "INSERT INTO reviews (newId, name, vote, text, created_at, updated_at) VALUES (?, ?, ?, ?, ?)";
+  const movieId = req.params.id;
+  const { name, vote, text } = req.body;
 
-  connection.query(sql, [newId, name, vote, text, created_at, updated_at], (err, results) => {
-    if(err) return res.status(500).json({error: 'Database query failed'})
-  res.json('results')
-  })
+  const sql =
+    "INSERT INTO reviews (movie_id, name, vote, text) VALUES (?, ?, ?, ?)";
+
+  connection.query(sql, [movieId, name, vote, text], (err, results) => {
+    if (err) {
+      console.error("SQL ERROR: ", err);
+      return res.status(500).json({ error: err.message });
+    }
+
+    res.status(201).json({
+      message: "Review created successfully",
+      reviewId: results.insertId,
+    });
+  });
 }
 
 module.exports = { index, show_movie, show_reviews, store };
